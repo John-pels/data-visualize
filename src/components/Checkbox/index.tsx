@@ -2,7 +2,7 @@ import { FC } from "react"
 import { ICheckbox } from "../../@types"
 import './style.css'
 
-const Checkbox: FC<ICheckbox> = ({ onChange, value, name, id, label }) => {
+const Checkbox: FC<ICheckbox> = ({ onChange, value, name, id, label, checked }) => {
     return (
         <div className="checkbox__container">
             <input
@@ -10,6 +10,7 @@ const Checkbox: FC<ICheckbox> = ({ onChange, value, name, id, label }) => {
                 className="checkbox"
                 onChange={onChange}
                 value={value}
+                checked={checked}
                 name={name}
                 id={id}
             />

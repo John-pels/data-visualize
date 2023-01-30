@@ -20,9 +20,70 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
+.flex {
+  display: flex;
+}
 .container {
   width: 100%;
   max-width: 1000px;
   margin: 30px auto;
+  padding: var(--spacing);
 }
+.search-form {
+  width: 50%;
+  gap: 15px;
+  align-items: center;
+}
+.content {
+  gap: 35px;
+  margin-top: var(--spacing);
+}
+.chart {
+  width: 80%;
+  min-height: 200px;
+  border: 1px solid red;
+}
+.position h4 {
+  margin-bottom: var(--spacing-sm);
+}
+
+.position_checkbox {
+  row-gap: 10px;
+  flex-direction: column;
+}
+
+/*=============================================
+=          Responsiveness            =
+=============================================*/
+
+/*=============================================
+=          Small Computer Devices           =
+=============================================*/
+@media (max-width: 1024px) {
+  .chart {
+    width: 70%;
+  }
+}
+/*=====  End of Small Computer Devices ======*/
+
+/*=============================================
+=          Mobile Devices            =
+=============================================*/
+@media (max-width: 600px) {
+  .content {
+    flex-direction: column-reverse;
+  }
+
+  .chart {
+    width: 100%;
+  }
+  .search-form {
+    width: 100%;
+  }
+  .position_checkbox {
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 10px;
+  }
+}
+/*=====  End of Mobile Devices  ======*/
