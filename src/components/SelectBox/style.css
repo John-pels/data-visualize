@@ -1,0 +1,18 @@
+.select-box {
+  width: 100%;
+  padding: var(--spacing-xs);
+  padding-left: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  border-bottom: 1.5px solid var(--border-bottom-color);
+  font-weight: bold;
+}
+.select-box:focus {
+  outline: none;
+}
+
+.select-box::-ms-expand {
+  display: none;
+}

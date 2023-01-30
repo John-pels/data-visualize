@@ -1,3 +1,11 @@
+:root {
+  --spacing: 25px;
+  --spacing-md: 18px;
+  --spacing-sm: 12px;
+  --spacing-xs: 8px;
+  --border-bottom-color: rgb(205, 199, 199);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -5,6 +13,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
 }
 
 code {
@@ -16,5 +25,4 @@ code {
   width: 100%;
   max-width: 1000px;
   margin: 30px auto;
-  border: 1px solid red;
 }
