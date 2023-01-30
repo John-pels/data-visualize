@@ -1,4 +1,5 @@
 import BaseRequest from ".";
+import { IRateQuery } from "../@types";
 import { API_ROUTES } from "./routes";
 /*=============================================
 =         API HTTP Methods and routes          =
@@ -14,9 +15,9 @@ class RequestService extends BaseRequest {
   getAllPorts = async () => {
     return await this.api.get(API_ROUTES.PORTS);
   };
-  getMarketRates = async (query: { origin: string; destination: string }) => {
+  getMarketRates = async (query: IRateQuery) => {
     return await this.api.get(
-      `${API_ROUTES.PORTS}?origin=${query.origin}&destination${query.destination}`
+      `${API_ROUTES.MARKET_RATES}?origin=${query.origin}&destination=${query.destination}`
     );
   };
 }

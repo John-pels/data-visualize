@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Checkbox } from "./components/Checkbox";
 import { SelectBox } from "./components/SelectBox";
-const OPTIONS = [{ name: 'Shangai', code: 'SHAKJHDO' }, { name: 'Beijing', code: 'BEIDJSKA' }]
+import { useFetchPort, useFetchRates } from "./hooks";
+
 
 
 const CHECKBOXES = [
@@ -15,26 +16,29 @@ const CHECKBOXES = [
 function App() {
   const [marketPosition, setmarketPosition] = useState('high')
   const [port, setPort] = useState({
-    origin: '',
-    destination: ''
+    origin: 'CNSGH',
+    destination: 'NOOSL'
   })
-
-  const handleMarketPosition = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const [allPorts] = useFetchPort()
+  const [allRates, , loading] = useFetchRates(port)
+  console.log('ports', allPorts)
+  console.log('rates', allRates)
+  const handleMarketPosition = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = event.target
     if (checked) {
       console.log(value)
       setmarketPosition(value)
     }
-  }
+  }, [])
 
-  const handlePortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handlePortChange = useCallback((event: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = event.target
     setPort({
       ...port,
       [name]: value
     })
     console.log(port)
-  }
+  }, [port])
 
 
   return (
@@ -44,18 +48,19 @@ function App() {
           onChange={handlePortChange}
           name='origin'
           value={port.origin}
-          options={OPTIONS}
+          options={allPorts}
         />
         <span>X</span>
         <SelectBox
           onChange={handlePortChange}
           name='destination'
           value={port.destination}
-          options={OPTIONS}
+          options={allPorts}
         />
       </form>
       <main className="content flex">
         <section className="chart">
+          {loading ? <p>Loading...</p> : null}
         </section>
         <section className="position">
           <h4>Market Position</h4>

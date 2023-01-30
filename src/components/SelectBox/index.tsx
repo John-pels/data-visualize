@@ -11,7 +11,7 @@ const SelectBox: FC<ISelectBox> = ({ onChange, value, name, options }) => {
             name={name}
         >
             {
-                React.Children.toArray(options.map(({ code, name }) => (
+                React.Children.toArray(options?.map(({ code, name }) => (
                     <option value={code}>{`${name} (${code})`}</option>
                 )))
             }

@@ -15,11 +15,24 @@ declare global {
   }
 }
 
+export type IRateQuery = {
+  origin: string;
+  destination: string;
+};
+
+export type IRates = {
+  day: string;
+  mean: number;
+  low: number;
+  high: number;
+};
+export type IPort = {
+  name: string;
+  code: string;
+};
+
 export type ISelectBox = {
-  options: Array<{
-    name: string;
-    code: string;
-  }>;
+  options: Array<IPort> | null;
 } & React.ComponentPropsWithoutRef<"select">;
 
 export type ICheckbox = {
