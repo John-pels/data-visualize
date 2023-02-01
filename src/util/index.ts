@@ -36,3 +36,9 @@ export const MONTHS = [
   "Nov",
   "Dec",
 ];
+
+export const marketPositionCheckboxAttributes = [
+  { name: "high", value: "high", label: "Market High" },
+  { name: "mean", value: "mean", label: "Market Average" },
+  { name: "low", value: "low", label: "Market Low" },
+];

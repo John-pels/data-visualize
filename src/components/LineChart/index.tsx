@@ -10,7 +10,7 @@ interface ILineChart {
 const LineChart: FC<ILineChart> = ({ width = 0, data, highestRateValue }) => {
     const allPrices = getAllMarketPrices(data) //grabbing all prices
     const svgRef = useRef<SVGSVGElement>(null);
-    const month = new Date(data[0].day).getMonth()
+    const month = new Date(data[0]?.day).getMonth() || 0
     const createLineChart = useCallback(() => {
         //setting the svg element
         const height = 500
@@ -20,7 +20,6 @@ const LineChart: FC<ILineChart> = ({ width = 0, data, highestRateValue }) => {
             .style('background', '#fff')
             .style('overflow', 'visible')
         //setting the scaling
-
         const xScale = d3.scaleLinear()
             .domain([0, allPrices.length - 1])
             .range([0, width])
@@ -32,11 +31,9 @@ const LineChart: FC<ILineChart> = ({ width = 0, data, highestRateValue }) => {
             .x((_, i) => xScale(i))
             .y(yScale)
             .curve(d3.curveCardinal)
-
         // clear all previous content on refresh or when the prices change
         const everything = svg.selectAll("*");
         everything.remove();
-
         //setting the axes
         const xAxis = d3.axisBottom(xScale.domain([0, allPrices.length - 1]))
             .tickFormat((i: any) => `${MONTHS[month]} ${i + 1}`)
@@ -49,7 +46,6 @@ const LineChart: FC<ILineChart> = ({ width = 0, data, highestRateValue }) => {
         svg.append('g')
             .classed("xAxis", true)
             .call(yAxis)
-
         //setting up the data for the svg
         svg.selectAll('.line')
             .data([allPrices])
@@ -58,7 +54,6 @@ const LineChart: FC<ILineChart> = ({ width = 0, data, highestRateValue }) => {
             .attr('fill', 'none')
             .attr('stroke', 'black')
     }, [width, allPrices, highestRateValue, month])
-
 
     useEffect(() => {
         createLineChart()

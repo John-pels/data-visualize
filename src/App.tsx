@@ -4,13 +4,8 @@ import { Checkbox } from "./components/Checkbox";
 import { LineChart } from "./components/LineChart";
 import { SelectBox } from "./components/SelectBox";
 import { useFetchPort, useFetchRates } from "./hooks";
-import { getMarketPositionPriceAndDay } from "./util";
+import { getMarketPositionPriceAndDay, marketPositionCheckboxAttributes } from "./util";
 
-const CHECKBOXES = [
-  { name: 'high', value: 'high', label: 'Market High' },
-  { name: 'mean', value: 'mean', label: 'Market Average' },
-  { name: 'low', value: 'low', label: 'Market Low' },
-]
 function App() {
   const [port, setPort] = useState({
     origin: 'CNSGH',
@@ -83,7 +78,7 @@ function App() {
           <h4>Market Position</h4>
           <div className="flex position_checkbox">
             {
-              React.Children.toArray(CHECKBOXES.map(({ name, label, value }) => (
+              React.Children.toArray(marketPositionCheckboxAttributes.map(({ name, label, value }) => (
                 <Checkbox
                   label={label}
                   name={name}
