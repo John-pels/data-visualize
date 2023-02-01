@@ -3,9 +3,9 @@ import * as d3 from 'd3';
 import { getAllMarketPrices, MONTHS } from "../../util";
 
 interface ILineChart {
-    width: number | undefined
+    width: number
     data: Array<{ day: string, price: number }>
-    highestRateValue: number | undefined
+    highestRateValue: number
 }
 const LineChart: FC<ILineChart> = ({ width = 0, data, highestRateValue }) => {
     const allPrices = getAllMarketPrices(data) //grabbing all prices
@@ -36,7 +36,7 @@ const LineChart: FC<ILineChart> = ({ width = 0, data, highestRateValue }) => {
         everything.remove();
         //setting the axes
         const xAxis = d3.axisBottom(xScale.domain([0, allPrices.length - 1]))
-            .tickFormat((i: any) => `${MONTHS[month]} ${i + 1}`)
+            .tickFormat((i: number) => `${MONTHS[month]} ${i + 1}`)
         const yAxis = d3.axisLeft(yScale)
             .tickFormat((d) => `$${d}`)
         svg.append('g')

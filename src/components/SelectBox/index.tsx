@@ -10,10 +10,12 @@ const SelectBox: FC<ISelectBox> = ({ onChange, value, name, options }) => {
             value={value}
             name={name}
         >
+            <option value="" disabled>select</option>
             {
-                React.Children.toArray(options?.map(({ code, name }) => (
-                    <option value={code}>{`${name} (${code})`}</option>
-                )))
+                React.Children.toArray(
+                    options?.map(({ code, name }) => (
+                        <option value={code}>{`${name} (${code})`}</option>
+                    )))
             }
         </select>
     )
