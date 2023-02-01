@@ -9,10 +9,12 @@ export const useFetchPort = () => {
     async function fetchData() {
       try {
         const response = await requestService.getAllPorts();
-        setData(response.data);
+        if (response.status === 200) {
+          setData(response.data);
+        }
       } catch (err) {
-        const error = err as any;
-        setError(error);
+        const error = err;
+        setError(err);
         console.log(error);
       }
     }
@@ -30,10 +32,12 @@ export const useFetchRates = (query: IRateQuery) => {
     try {
       setIsLoading(true);
       const response = await requestService.getMarketRates(query);
-      setData(response.data);
+      if (response.status === 200) {
+        setData(response.data);
+      }
     } catch (err) {
-      const error = err as any;
-      setError(error);
+      const error = err;
+      setError(err);
       console.log(error);
     } finally {
       setIsLoading(false);
