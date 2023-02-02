@@ -37,7 +37,7 @@ export const useFetchRates = (query: IRateQuery) => {
       }
     } catch (err) {
       const error = err;
-      setError(err);
+      setError(error?.message);
       console.log(error);
     } finally {
       setIsLoading(false);

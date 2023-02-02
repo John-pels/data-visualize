@@ -16,7 +16,7 @@ function App() {
     price: number;
   }>>([])
   const [allPorts] = useFetchPort()
-  const [allRates, , loading] = useFetchRates(port)
+  const [allRates, error, loading] = useFetchRates(port)
   const [marketPosition, setmarketPosition] = useState('high')
   const highestRateValue = Math.max(...allRates?.map((rate: IRates) => rate.high))
   const chartAreaRef = useRef<HTMLDivElement>(null)
@@ -45,7 +45,7 @@ function App() {
 
   }, [allRates])
 
-
+  if (error) return <div className="error">{`There seems to be a ${error}, please refresh the page`}</div>
 
   return (
     <div className="container">
@@ -65,6 +65,7 @@ function App() {
         />
       </form>
       <main className="content flex">
+        {error ? <p>{error}</p> : null}
         <section className="chart" ref={chartAreaRef}>
           {loading ? <p>Loading...</p> :
             <LineChart

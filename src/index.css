@@ -4,6 +4,7 @@
   --spacing-sm: 12px;
   --spacing-xs: 8px;
   --border-bottom-color: rgb(205, 199, 199);
+  --error: #eb4019;
 }
 
 body {
@@ -49,6 +50,13 @@ code {
 .position_checkbox {
   row-gap: 10px;
   flex-direction: column;
+}
+
+.error {
+  display: grid;
+  height: 100vh;
+  place-items: center;
+  color: var(--error);
 }
 
 /*=============================================
